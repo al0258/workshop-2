@@ -15,6 +15,7 @@ const endGameData = [{
 const stones = document.querySelectorAll('.stone');
 const avengers = document.querySelectorAll('.avenger');
 const glove = document.querySelector('.infinity_glove');
+const texty = document.querySelector('#goodWork');
 let clickedStone;
 let clickedStoneId;
 
@@ -27,6 +28,7 @@ for (const stone of stones){
 }
 
 function onStoneClicked(target){
+    texty.style.display="none";
     clickedStone  = target;
     clickedStoneId = target.id;
     target.style.backgroundColor = "blue";
@@ -43,15 +45,17 @@ function onAvengerClicked(avenger){
     const index =  endGameData.findIndex(function(stone, index){
         return stone.name === clickedStoneId;
     })
-    console.log(index);
-    console.log(avenger.id);
-    if (endGameData[index].avengers.includes(avenger.id)){
-        alert("correct");
+    const correctAvengers = endGameData[index].avengers;
+    console.log(correctAvengers);
+    if (correctAvengers.includes(avenger.id) || correctAvengers[0].name===avenger.id){
+        texty.style.display="block";
+        texty.textContent = "Correct";
         clickedStone.style.display = 'none';
         avenger.style.backgroundColor = "white";
     }
     else{
-        alert("Not correct")
+        texty.style.display="block";
+        texty.textContent = "Not correct";
         clickedStone.style.backgroundColor = "white";
         avenger.style.backgroundColor = "white";
     }
@@ -66,9 +70,11 @@ glove.addEventListener ('click', ({target}) => {
         }
     }
     if(gameEnd){
-        alert("Good job");
+        texty.style.display="block";
+        texty.textContent = "Awesome! You finished the game!!";
     }
     else{
-        alert("Not just yet");
+        texty.style.display="block";
+        texty.textContent = "Haven't finished yet";
     }
 });
