@@ -16,6 +16,7 @@ const stones = document.querySelectorAll('.stone');
 const avengers = document.querySelectorAll('.avenger');
 const glove = document.querySelector('.infinity_glove');
 const texty = document.querySelector('#goodWork');
+const gloveWithStones = document.querySelector('#infinity-glove-with-stones');
 let clickedStone;
 let clickedStoneId;
 
@@ -72,6 +73,8 @@ glove.addEventListener ('click', ({target}) => {
     if(gameEnd){
         texty.style.display="block";
         texty.textContent = "Awesome! You finished the game!!";
+        glove.style.display="none";
+        gloveWithStones.style.display="block";
     }
     else{
         texty.style.display="block";
